@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MVCApplication1.Data;
+using MVCApplication1.DataAccess.Data;
 using MVCApplication1.Models;
 
 namespace MVCApplication1.Controllers
