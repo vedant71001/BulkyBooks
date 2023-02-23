@@ -4,19 +4,19 @@ using MVCApplication1.Models;
 
 namespace MVCApplication1.Controllers
 {
-    public class BookController : Controller
+    public class CoverTypeController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public BookController(ApplicationDbContext db)
+        public CoverTypeController(ApplicationDbContext db)
         {
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Book> books = _db.Books;
-            return View(books);
+            IEnumerable<CoverType> objCoverTypesList = _db.CoverTypes;
+            return View(objCoverTypesList);
         }
 
         //GET
@@ -28,13 +28,13 @@ namespace MVCApplication1.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Book obj)
+        public IActionResult Create(CoverType obj)
         {
             if (ModelState.IsValid)
             {
-                _db.Books.Add(obj);
+                _db.CoverTypes.Add(obj);
                 _db.SaveChanges();
-                TempData["success"] = "Book created successfully";
+                TempData["success"] = "Cover Type created successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -43,34 +43,36 @@ namespace MVCApplication1.Controllers
         //GET
         public IActionResult Edit(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            
-            var book = _db.Books.Find(id);
-            if(book == null)
+
+            var coverType = _db.CoverTypes.Find(id);
+            //var category = _db.Categories.FirstOrDefault(c => c.Id == id);
+
+            if (coverType == null)
             {
                 return NotFound();
             }
-            return View(book);
+
+            return View(coverType);
         }
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Book obj)
+        public IActionResult Edit(CoverType obj)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _db.Books.Update(obj);
+                _db.CoverTypes.Update(obj);
                 _db.SaveChanges();
-                TempData["success"] = "Book updated successfully";
+                TempData["success"] = "Cover Type updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
-
 
         //GET
         public IActionResult Delete(int? id)
@@ -80,27 +82,32 @@ namespace MVCApplication1.Controllers
                 return NotFound();
             }
 
-            var book = _db.Books.Find(id);
-            if (book == null)
+            var coverType = _db.CoverTypes.Find(id);
+            //var category = _db.Categories.FirstOrDefault(c => c.Id == id);
+
+            if (coverType == null)
             {
                 return NotFound();
             }
-            return View(book);
+
+            return View(coverType);
         }
 
         //POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteBook(int? id)
+        public IActionResult DeletePOST(int? id)
         {
-            var book = _db.Books.Find(id);
-            if (book == null)
+            var obj = _db.CoverTypes.Find(id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _db.Books.Remove(book);
+
+            _db.CoverTypes.Remove(obj);
             _db.SaveChanges();
-            TempData["success"] = "Book deleted successfully";
+            TempData["success"] = "Cover Type deleted successfully";
+
             return RedirectToAction("Index");
         }
     }

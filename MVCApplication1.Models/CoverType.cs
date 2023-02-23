@@ -2,13 +2,14 @@
 
 namespace MVCApplication1.Models
 {
-    public class Book
+    public class CoverType
     {
         [Key]
         public int Id { get; set; }
+
+        [Display(Name = "Cover Type")]
         [Required]
-        public string Title { get; set; }
-        [Required]
-        public string Author { get; set; }
+        [MaxLength(50)]
+        public string Name { get; set; }
     }
 }

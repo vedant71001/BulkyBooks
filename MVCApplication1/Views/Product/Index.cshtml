@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Book>
+﻿@model IEnumerable<Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,11 +7,11 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2 class="text-primary">Book List</h2>
+            <h2 class="text-primary">Product List</h2>
         </div>
         <div class="col text-end">
-            <a asp-controller="Book" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Create New Book
+            <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Product
             </a>
         </div>
     </div>
@@ -19,10 +19,16 @@
         <thead>
             <tr>
                 <th>
-                    Book Name
+                    Title
                 </th>
                 <th>
-                    Author Name
+                    Description
+                </th>
+                <th>
+                    ISBN
+                </th>
+                <th>
+                    Author
                 </th>
                 <th></th>
             </tr>
@@ -31,18 +37,24 @@
             @foreach (var item in Model)
            {
                <tr>
-                   <td width= 50%>
+                   <td width= 20%>
                        @item.Title
                    </td>
-                   <td width= 30%>
+                   <td width= 20%>
+                       @item.Description
+                   </td>
+                   <td width= 20%>
+                       @item.ISBN
+                   </td>
+                   <td width= 20%>
                        @item.Author
                    </td>
                    <td>
                        <div class="btn-group">
-                           <a asp-controller="Book" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">
+                           <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">
                                <i class="bi bi-pencil-square"></i>
                            </a>
-                           <a asp-controller="Book" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                           <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
                                <i class="bi bi-trash-fill"></i>
                            </a>
                        </div>
@@ -52,6 +64,5 @@
         </tbody>
     </table>
 </div>
-
 
 
