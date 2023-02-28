@@ -27,4 +27,8 @@
     <ProjectReference Include="..\MVCApplication1.Utility\MVCApplication1.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\product\" />
+  </ItemGroup>
+
 </Project>

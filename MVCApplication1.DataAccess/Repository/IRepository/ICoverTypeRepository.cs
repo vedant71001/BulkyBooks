@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MVCApplication1.DataAccess.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface ICoverTypeRepository : IRepository<CoverType>
     {
-        void Update(Category category);
+        void Update(CoverType coverType);
     }
 }
